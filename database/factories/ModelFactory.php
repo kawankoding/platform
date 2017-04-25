@@ -38,3 +38,28 @@ $factory->define(App\Models\Series::class, function (Faker\Generator $faker) {
         'description' => $faker->paragraph,
     ];
 });
+
+$factory->define(App\Models\Video::class, function (Faker\Generator $faker) {
+
+    $series_id = \App\Models\Series::pluck('id')->push(null)->random();
+
+    return [
+        'user_id' => rand(1,10),
+        'series_id' => $series_id,
+        'title' => $faker->text(20),
+        'description' => $faker->paragraph,
+        'youtube_id' => md5($faker->text(10)),
+    ];
+});
+
+$factory->define(App\Models\Blog::class, function (Faker\Generator $faker) {
+
+   $series_id = \App\Models\Series::pluck('id')->push(null)->random();
+
+    return [
+        'user_id' => rand(1,10),
+        'series_id' => $series_id,
+        'title' => $faker->text(20),
+        'content' => $faker->paragraph,
+    ];
+});
